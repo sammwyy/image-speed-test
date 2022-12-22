@@ -19,6 +19,17 @@ const samples = [
   },
 ];
 
+function createNonce(length = 8) {
+  var result = "";
+  var characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
 function color(text) {
   const bads = ["no", "lossy"];
   let color = null;
@@ -89,7 +100,7 @@ function renderSample({ extension, size, type, alpha }) {
       resolve();
     };
 
-    img.src = "samples/image." + extension;
+    img.src = "samples/image." + extension + "?=" + createNonce();
   });
 }
 
