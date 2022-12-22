@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Speed Test</title>
+    <meta
+      name="description"
+      content="With this page, your browser will download the same image in
+    webp, jpg and png format. It will show you the size of each one and how
+    long it takes to load."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="navbar w-100 p-4">
+      <div
+        class="navbar-content d-flex align-items-center justify-content-between w-100"
+      >
+        <div class="navbar-brand">
+          <h1>Image Speed Test</h1>
+          <p style="font-size: 17px">Created with ❤️ by Sammwy</p>
+        </div>
+
+        <div class="navbar-links">
+          <a
+            href="https://github.com/sammwyy"
+            target="_blank"
+            class="btn btn-link text-decoration-none"
+            >[GitHub]</a
+          >
+          <a
+            href="https://twitter.com/sammwy"
+            target="_blank"
+            class="btn btn-link text-decoration-none"
+            >[Twitter]</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-center" id="no-results">
+      <h2>Test the image formats</h2>
+      <p>
+        By pressing the button your browser will download the same image in
+        webp, jpg and png format. It will show you the size of each one and how
+        long it takes to load.
+      </p>
+
+      <button class="btn btn-primary" onclick="runTest()">Run test</button>
+    </div>
+
+    <div class="container text-center mt-5" id="test-results"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
