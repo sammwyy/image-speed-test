@@ -47,10 +47,11 @@ function color(text) {
 }
 
 function renderSample({ extension, size, type, alpha }) {
-  const root = document.getElementById("test-results");
-  const element = document.createElement("div");
-  element.style.display = "none";
-  element.innerHTML = `
+  return new Promise((resolve) => {
+    const root = document.getElementById("test-results");
+    const element = document.createElement("div");
+    element.style.display = "none";
+    element.innerHTML = `
     <div class="d-flex w-100 justify-content-evenly align-items-center mt-5">
         <div class="w-25 px-5">
         <h3>${extension.toUpperCase()}</h3>
@@ -73,25 +74,27 @@ function renderSample({ extension, size, type, alpha }) {
         </div>
     </div>
     `;
-  root.appendChild(element);
+    root.appendChild(element);
 
-  const img = document.getElementById("img-file-" + extension);
-  const timeSpan = document.getElementById("dt-file-" + extension);
-  const start = Date.now();
+    const img = document.getElementById("img-file-" + extension);
+    const timeSpan = document.getElementById("dt-file-" + extension);
+    const start = Date.now();
 
-  img.onload = () => {
-    const end = Date.now();
-    const lapsed = end - start;
+    img.onload = () => {
+      const end = Date.now();
+      const lapsed = end - start;
 
-    timeSpan.innerHTML = color((lapsed + "").split(".")[0]) + "ms";
-    element.style.display = "block";
-  };
+      timeSpan.innerHTML = color((lapsed + "").split(".")[0]) + "ms";
+      element.style.display = "block";
+      resolve();
+    };
 
-  img.src = "samples/image." + extension;
+    img.src = "samples/image." + extension;
+  });
 }
 
-function runTest() {
+async function runTest() {
   for (const sample of samples) {
-    renderSample(sample);
+    await renderSample(sample);
   }
 }
